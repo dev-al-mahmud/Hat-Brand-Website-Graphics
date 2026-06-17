@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX Performance Hats | Built For Every Adventure</title>
+    <meta name="description" content="Premium waterproof, dry-fit, lightweight performance hats designed for boating, fishing, golf, hiking, travel, and everyday wear.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Premium Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --accent-gray: #F4F4F4;
+            --text-muted: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary-black);
+            background-color: var(--primary-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+
+        .text-uppercase-tracked {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn-premium {
+            padding: 15px 35px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            border-radius: 0;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid transparent;
+        }
+
+        .btn-dark-premium {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            border-color: var(--primary-black);
+        }
+
+        .btn-dark-premium:hover {
+            background: transparent;
+            color: var(--primary-black);
+            border-color: var(--primary-black);
+        }
+
+        .btn-light-premium {
+            background: transparent;
+            color: var(--primary-white);
+            border-color: var(--primary-white);
+        }
+
+        .btn-light-premium:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+            border-color: var(--primary-white);
+        }
+
+        /* Navigation */
+        .navbar-premium {
+            background: transparent;
+            transition: all 0.4s ease;
+            padding: 20px 0;
+        }
+        .navbar-premium.scrolled {
+            background: var(--primary-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        .navbar-premium.scrolled .nav-link, .navbar-premium.scrolled .navbar-brand {
+            color: var(--primary-black) !important;
+        }
+        .navbar-premium .nav-link, .navbar-premium .navbar-brand {
+            color: var(--primary-white);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .navbar-premium .nav-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            min-height: 700px;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('https://i.postimg.cc/ZKgRQr7Q/project.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: var(--primary-white);
+        }
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Product Cards */
+        .product-card {
+            border: none;
+            background: var(--primary-white);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+        .product-img-wrap {
+            overflow: hidden;
+            background: var(--accent-gray);
+            position: relative;
+        }
+        .product-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .quick-add {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 80%;
+            background: var(--primary-black);
+            color: var(--primary-white);
+            border: none;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .product-card:hover .quick-add {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        .product-info {
+            padding-top: 20px;
+            text-align: center;
+        }
+        .color-swatch {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 3px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        /* Feature & Tech Sections */
+        .feature-box {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        /* Parallax/Lifestyle Grid */
+        .lifestyle-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .lifestyle-grid .col-img {
+            overflow: hidden;
+            padding: 2px;
+        }
+        .lifestyle-grid .col-img:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Reviews */
+        .testimonial-card {
+            background: var(--accent-gray);
+            padding: 40px;
+            border-radius: 0;
+            height: 100%;
+        }
+        .stars {
+            color: #f5a623;
+            margin-bottom: 20px;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 100px 0;
+        }
+        .form-control-premium {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            border-radius: 0;
+            color: var(--primary-white);
+            padding: 15px 0;
+        }
+        .form-control-premium:focus {
+            box-shadow: none;
+            border-color: var(--primary-white);
+            background: transparent;
+            color: var(--primary-white);
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #888;
+            padding: 80px 0 40px;
+        }
+        footer h5 {
+            color: var(--primary-white);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+        }
+        footer a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        footer a:hover {
+            color: var(--primary-white);
+        }
+        
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .navbar-premium { background: var(--primary-white); }
+            .navbar-premium .nav-link, .navbar-premium .navbar-brand { color: var(--primary-black) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-premium fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">APEX HEADWEAR</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navMain">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#technology">Technology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#lifestyle">Lifestyle</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#story">Our Story</a></li>
+                </ul>
+            </div>
+            <div class="d-flex align-items-center gap-3 d-none d-lg-flex">
+                <a href="#" class="text-white text-decoration-none"><i class="bi bi-person"></i> Account</a>
+                <a href="#" class="btn btn-sm btn-outline-light rounded-0 border-white text-white">Cart (0)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 hero-content">
+                    <p class="text-uppercase-tracked mb-3 fade-up visible">Waterproof | Lightweight | Performance</p>
+                    <h1 class="fade-up visible">Performance Hats Built For Every Adventure</h1>
+                    <p class="lead mb-4 fade-up visible" style="max-width: 600px;">Engineered with proprietary waterproof technology and ultra-breathable dry-fit materials. Conquer the elements without compromising comfort.</p>
+                    <div class="d-flex flex-wrap gap-3 fade-up visible">
+                        <a href="#shop" class="btn btn-premium btn-dark-premium">Shop Collection</a>
+                        <a href="#technology" class="btn btn-premium btn-light-premium">Explore Features</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Products Section -->
+    <section id="shop" class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="text-uppercase-tracked text-muted fade-up">The Collection</p>
+                <h2 class="display-4 fade-up">Featured Headwear</h2>
+            </div>
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-md-6 col-lg-3 fade-up">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop" class="product-img" alt="Black Performance Hat">
+                            <button class="quick-add">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="fs-6">The Voyager - Onyx</h5>
+                            <p class="text-muted mb-1">$48.00</p>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <span class="color-swatch" style="background: #000;"></span>
+                                <span class="color-swatch" style="background: #fff; border: 1px solid #ccc;"></span>
+                                <span class="color-swatch" style="background: #2c3e50;"></span>
+                            </div>
+                            <div class="stars mt-2" style="font-size: 0.8rem;">★★★★★ <span class="text-muted">(124)</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-md-6 col-lg-3 fade-up">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop" class="product-img" alt="White Performance Hat">
+                            <button class="quick-add">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="fs-6">The Apex - Cloud</h5>
+                            <p class="text-muted mb-1">$48.00</p>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <span class="color-swatch" style="background: #fff; border: 1px solid #ccc;"></span>
+                                <span class="color-swatch" style="background: #f5f5dc;"></span>
+                                <span class="color-swatch" style="background: #87ceeb;"></span>
+                            </div>
+                            <div class="stars mt-2" style="font-size: 0.8rem;">★★★★★ <span class="text-muted">(98)</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-md-6 col-lg-3 fade-up">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1517941875066-bb6713c9e8e1?q=80&w=600&auto=format&fit=crop" class="product-img" alt="Navy Performance Hat">
+                            <button class="quick-add">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="fs-6">The Angler - Deep Sea</h5>
+                            <p class="text-muted mb-1">$52.00</p>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <span class="color-swatch" style="background: #000080;"></span>
+                                <span class="color-swatch" style="background: #008080;"></span>
+                                <span class="color-swatch" style="background: #808080;"></span>
+                            </div>
+                            <div class="stars mt-2" style="font-size: 0.8rem;">★★★★☆ <span class="text-muted">(76)</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-md-6 col-lg-3 fade-up">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?q=80&w=600&auto=format&fit=crop" class="product-img" alt="Olive Performance Hat">
+                            <button class="quick-add">Quick Add</button>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="fs-6">The Trek - Forest</h5>
+                            <p class="text-muted mb-1">$48.00</p>
+                            <div class="d-flex justify-content-center align-items-center mt-2">
+                                <span class="color-swatch" style="background: #556b2f;"></span>
+                                <span class="color-swatch" style="background: #8b4513;"></span>
+                                <span class="color-swatch" style="background: #000;"></span>
+                            </div>
+                            <div class="stars mt-2" style="font-size: 0.8rem;">★★★★★ <span class="text-muted">(112)</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Features Section -->
+    <section id="technology" class="bg-black text-white py-5">
+        <div class="container py-5">
+            <div class="row text-center mb-5">
+                <div class="col">
+                    <p class="text-uppercase-tracked text-white-50 fade-up">Engineered Excellence</p>
+                    <h2 class="display-5 fade-up">Uncompromising Performance</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">💧</div>
+                        <h5 class="fs-5">Waterproof Technology</h5>
+                        <p class="text-white-50 small">Hydrophobic nanotech coating repels water instantly, keeping your head dry in any downpour.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">🌊</div>
+                        <h5 class="fs-5">Floatable Design</h5>
+                        <p class="text-white-50 small">Never lose your hat to the depths again. Our core buoyancy tech keeps it above water.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">☀️</div>
+                        <h5 class="fs-5">UV Protection</h5>
+                        <p class="text-white-50 small">UPF 50+ rated materials block harmful rays, shielding your skin during long outdoor exposure.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">🛡️</div>
+                        <h5 class="fs-5">Sweat Resistant</h5>
+                        <p class="text-white-50 small">A proprietary inner band prevents sweat from soaking through, maintaining a crisp look.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">💨</div>
+                        <h5 class="fs-5">Breathable Construction</h5>
+                        <p class="text-white-50 small">Strategic micro-ventilation allows maximum airflow, reducing heat build-up by 30%.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">🪶</div>
+                        <h5 class="fs-5">Lightweight Material</h5>
+                        <p class="text-white-50 small">Aerospace-grade polymers make this the lightest, most comfortable hat you'll ever wear.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Showcase Section -->
+    <section id="lifestyle" class="py-5">
+        <div class="container-fluid p-0">
+            <div class="text-center mb-5">
+                <p class="text-uppercase-tracked text-muted fade-up">Built For Life</p>
+                <h2 class="display-5 fade-up">The Outdoor Lifestyle</h2>
+            </div>
+            <div class="row g-0 lifestyle-grid">
+                <div class="col-md-3 col-sm-6 col-img fade-up">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpbxbUsjcq9FTG1rIKMd53qIcxXzUMe0X3Sv6OdygsKA&s=10" alt="Boating Lifestyle">
+                </div>
+                <div class="col-md-3 col-sm-6 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=600&auto=format&fit=crop" alt="Fishing Lifestyle">
+                </div>
+                <div class="col-md-3 col-sm-6 col-img fade-up">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwjnVgosEWXiO6isFrf272nS1OlxhWlkdwWxaruxI0Zw&s=10" alt="Golf Lifestyle">
+                </div>
+                <div class="col-md-3 col-sm-6 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=600&auto=format&fit=crop" alt="Hiking Lifestyle">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <p class="text-uppercase-tracked text-muted fade-up">Why Choose Us</p>
+                    <h2 class="display-5 fade-up">More Than Just A Hat</h2>
+                </div>
+                <div class="col-lg-6">
+                    <p class="lead text-muted fade-up">We don't just make headwear; we engineer essential tools for the modern adventurer. Every stitch serves a purpose.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4 fade-up">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body p-0">
+                            <h4 class="display-6 text-black mb-3">01.</h4>
+                            <h5 class="fs-5">Premium Materials</h5>
+                            <p class="text-muted small">Sourced from the most advanced textile labs globally. We settle for nothing less than the best.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 fade-up">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body p-0">
+                            <h4 class="display-6 text-black mb-3">02.</h4>
+                            <h5 class="fs-5">Performance Engineering</h5>
+                            <p class="text-muted small">Rigorously tested in extreme environments from the open ocean to high-altitude peaks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 fade-up">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body p-0">
+                            <h4 class="display-6 text-black mb-3">03.</h4>
+                            <h5 class="fs-5">All-Day Comfort</h5>
+                            <p class="text-muted small">Feather-light construction and ergonomic fit means you'll forget you're even wearing it.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4 fade-up">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body p-0">
+                            <h4 class="display-6 text-black mb-3">04.</h4>
+                            <h5 class="fs-5">Built For Outdoor Life</h5>
+                            <p class="text-muted small">Crushable, packable, and indestructible. Ready for wherever the trail takes you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Split Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 fade-up">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800&auto=format&fit=crop" class="img-fluid" alt="Hat Technology Close Up">
+                </div>
+                <div class="col-lg-6 ps-lg-5 fade-up">
+                    <p class="text-uppercase-tracked text-muted">The Tech Inside</p>
+                    <h2 class="display-5 mb-4">Science Meets Style</h2>
+                    <p class="lead text-muted mb-5">At the core of our hats is a 3-layer laminate system designed to handle whatever nature throws at you.</p>
+                    
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-4 fs-3">🌧️</div>
+                        <div>
+                            <h5 class="fs-6">Waterproof Exterior</h5>
+                            <p class="text-muted small mb-0">Repels rain, sea spray, and spills. Beads off instantly without soaking in.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-4 fs-3">❄️</div>
+                        <div>
+                            <h5 class="fs-6">Moisture-Wicking Interior</h5>
+                            <p class="text-muted small mb-0">Pulls sweat away from your skin to the outer layer where it evaporates quickly.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="me-4 fs-3">🧵</div>
+                        <div>
+                            <h5 class="fs-6">Performance Dry-Fit Fabric</h5>
+                            <p class="text-muted small mb-0">Stretchable, fast-drying threads that maintain their shape after years of abuse.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="text-uppercase-tracked text-muted fade-up">Testimonials</p>
+                <h2 class="display-5 fade-up">Trusted By Adventurers</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4 fade-up">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="mb-4">"I've worn a lot of hats fishing, but nothing compares to this. It floats, it doesn't soak through with sweat, and it looks incredible. Worth every penny."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop" class="rounded-circle me-3" width="50" height="50" alt="Customer">
+                            <div>
+                                <h6 class="mb-0">James T.</h6>
+                                <small class="text-muted">Avid Angler</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 fade-up">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="mb-4">"The perfect golf hat. Lightweight, breathable, and the UV protection is a game changer in the summer heat. Doesn't trap sweat like my old hats."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" class="rounded-circle me-3" width="50" height="50" alt="Customer">
+                            <div>
+                                <h6 class="mb-0">Sarah M.</h6>
+                                <small class="text-muted">Golfer & Runner</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 fade-up">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="mb-4">"Took this hat on a 14-day backcountry hike. It rained for 4 days straight and my head was the only dry part of my body. Insane technology."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&auto=format&fit=crop" class="rounded-circle me-3" width="50" height="50" alt="Customer">
+                            <div>
+                                <h6 class="mb-0">Marcus W.</h6>
+                                <small class="text-muted">Backpacker</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section id="story" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0 fade-up">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop" class="img-fluid" alt="Brand Story">
+                </div>
+                <div class="col-lg-6 order-lg-1 pe-lg-5 fade-up">
+                    <p class="text-uppercase-tracked text-muted">Our Story</p>
+                    <h2 class="display-5 mb-4">Born From The Elements</h2>
+                    <p class="text-muted mb-4">We started APEX Headwear because we were tired of compromising. We wanted the style of a premium streetwear hat, but the technical performance of top-tier outdoor gear. Nothing existed.</p>
+                    <p class="text-muted mb-4">So, we built it. We spent three years sourcing aerospace-grade lightweight polymers, developing our proprietary waterproof coating, and engineering a floatable core that doesn't sacrifice breathability.</p>
+                    <p class="text-muted mb-4">The result is a hat that looks just as good on the boat as it does at the 19th hole. A hat built to outlast the elements, and look damn good doing it.</p>
+                    <a href="#" class="btn btn-premium btn-dark-premium mt-3">Discover Our Journey</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram / Community Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="text-uppercase-tracked text-muted fade-up">Community</p>
+                <h2 class="display-5 fade-up">#APEXAdventures</h2>
+                <p class="text-muted fade-up">Tag us in your adventures for a chance to be featured.</p>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row g-0 lifestyle-grid">
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=400&auto=format&fit=crop" alt="UGC 1">
+                </div>
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=400&auto=format&fit=crop" alt="UGC 2">
+                </div>
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=400&auto=format&fit=crop" alt="UGC 3">
+                </div>
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1431794062232-2a99a5431c6c?q=80&w=400&auto=format&fit=crop" alt="UGC 4">
+                </div>
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=80&w=400&auto=format&fit=crop" alt="UGC 5">
+                </div>
+                <div class="col-6 col-md-2 col-img fade-up">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=400&auto=format&fit=crop" alt="UGC 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fade-up">
+                    <p class="text-uppercase-tracked text-white-50 mb-3">Stay Connected</p>
+                    <h2 class="display-3 mb-4">Join The Adventure</h2>
+                    <p class="lead text-white-50 mb-5">Subscribe for early access to new drops, exclusive offers, and adventure stories. Get 10% off your first order.</p>
+                    <form class="row g-3 justify-content-center">
+                        <div class="col-md-7">
+                            <input type="email" class="form-control form-control-premium" placeholder="Enter your email address" required>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-premium btn-light-premium w-100">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row pb-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h3 class="text-white mb-3" style="font-family: 'Syne', sans-serif;">APEX HEADWEAR</h3>
+                    <p class="small" style="color: #666; max-width: 300px;">Premium performance hats engineered for the modern adventurer. Waterproof, floatable, and built to last.</p>
+                </div>
+                <div class="col-6 col-lg-2 mb-4">
+                    <h5>Shop</h5>
+                    <a href="#">All Hats</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Gift Cards</a>
+                </div>
+                <div class="col-6 col-lg-2 mb-4">
+                    <h5>About</h5>
+                    <a href="#">Our Story</a>
+                    <a href="#">Technology</a>
+                    <a href="#">Sustainability</a>
+                    <a href="#">Ambassadors</a>
+                </div>
+                <div class="col-6 col-lg-2 mb-4">
+                    <h5>Help</h5>
+                    <a href="#">Contact Us</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Returns</a>
+                </div>
+                <div class="col-6 col-lg-2 mb-4">
+                    <h5>Follow</h5>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+            </div>
+            <hr style="border-color: #222;">
+            <div class="row pt-4 align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0" style="color: #444;">© 2023 Apex Headwear. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!-- <img src="https://via.placeholder.com/40x25/ffffff/000000?text=VISA" alt="Visa" class="mx-1"> -->
+                   <!--  <img src="https://via.placeholder.com/40x25/ffffff/000000?text=MC" alt="Mastercard" class="mx-1">
+                    <img src="https://via.placeholder.com/40x25/ffffff/000000?text=AMEX" alt="Amex" class="mx-1">
+                    <img src="https://via.placeholder.com/40x25/ffffff/000000?text=PYPL" alt="PayPal" class="mx-1"> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Navbar Scroll Effect
+        const nav = document.querySelector('.navbar-premium');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Fade-up Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
